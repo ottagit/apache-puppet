@@ -1,0 +1,15 @@
+steps:
+  - task: apache::ctl
+    target: ip-172-31-35-229.ap-south-1.compute.internal
+    description: "Shut down Apache service"
+    parameters:
+      command: graceful-stop
+  - command: "cp /etc/httpd/logs/access_log /tmp/apache_access"
+    target: ip-172-31-35-229.ap-south-1.compute.internal
+    description: "Copy the Apache access logs"
+  - task: package
+    target: ip-172-31-35-229.ap-south-1.compute.internal
+    description: "Remove Apache"
+    parameters:
+      action: uninstall
+      name: httpd
