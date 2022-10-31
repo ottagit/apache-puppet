@@ -10,4 +10,10 @@ class apache::config {
       group  => 'root',
       mode   => '0644',
   }
+
+  @@host {
+    "${hostname}":
+      host_aliases => "$fqdn",
+      ip           => "$ipaddress",
+  }
 }
